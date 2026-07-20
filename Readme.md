@@ -1,7 +1,8 @@
 # Личный проект «Кекстаграм»
 
 * Студент: [Ирина Трубчик](https://up.htmlacademy.ru/javascript-individual/3/user/314909).
-* Наставник: `Неизвестно`.
+* Наставник: [Анастасия Гущина](https://htmlacademy.ru/profile/vanastasiya).
+* проект Кекстаграм
 
 ---
 
