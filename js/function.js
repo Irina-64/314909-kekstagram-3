@@ -15,3 +15,27 @@ const isPalindrome = (string) => {
 isPalindrome('топот'); // true
 isPalindrome('ДовОд'); // true
 isPalindrome('Кекс'); // false
+
+// Извлекает из строки (или числа) все цифры и возвращает их как целое положительное число
+const extractNumber = (value) => {
+  const string = value.toString();
+  let digits = '';
+
+  for (const character of string) {
+    const digit = parseInt(character, 10);
+    if (!Number.isNaN(digit)) {
+      digits += digit;
+    }
+  }
+
+  return digits === '' ? NaN : parseInt(digits, 10);
+};
+
+extractNumber('2023 год'); // 2023
+extractNumber('ECMAScript 2022'); // 2022
+extractNumber('1 кефир, 0.5 батона'); // 105
+extractNumber('агент 007'); // 7
+extractNumber('а я томат'); // NaN
+extractNumber(2023); // 2023
+extractNumber(-1); // 1
+extractNumber(1.5); // 15
