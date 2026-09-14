@@ -1,8 +1,8 @@
 import { getData } from './api.js';
-import { renderThumbnails } from './render-thumbnails.js';
+import { initFilters } from './filters.js';
 import { showDataErrorMessage } from './messages.js';
 import './form.js';
 
 getData()
-  .then(renderThumbnails)
+  .then(initFilters)
   .catch(showDataErrorMessage);
