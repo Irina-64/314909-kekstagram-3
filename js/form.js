@@ -5,6 +5,8 @@ import { resetEffect } from './effects.js';
 import { sendData } from './api.js';
 import { showSuccessMessage, showErrorMessage } from './messages.js';
 
+const DEFAULT_PREVIEW_SRC = 'img/upload-default-image.jpg';
+
 const form = document.querySelector('.img-upload__form');
 const fileField = form.querySelector('#upload-file');
 const overlay = form.querySelector('.img-upload__overlay');
@@ -12,8 +14,40 @@ const cancelButton = form.querySelector('.img-upload__cancel');
 const hashtagsField = form.querySelector('.text__hashtags');
 const commentField = form.querySelector('.text__description');
 const submitButton = form.querySelector('.img-upload__submit');
+const previewImage = form.querySelector('.img-upload__preview img');
+const effectsPreviews = form.querySelectorAll('.effects__preview');
+
+let currentObjectUrl = '';
 
 const isTextFieldFocused = () => document.activeElement === hashtagsField || document.activeElement === commentField;
+
+const updatePreview = () => {
+  const [file] = fileField.files;
+
+  if (!file) {
+    return;
+  }
+
+  currentObjectUrl = URL.createObjectURL(file);
+  previewImage.src = currentObjectUrl;
+
+  effectsPreviews.forEach((preview) => {
+    preview.style.backgroundImage = `url(${currentObjectUrl})`;
+  });
+};
+
+const resetPreview = () => {
+  if (currentObjectUrl) {
+    URL.revokeObjectURL(currentObjectUrl);
+    currentObjectUrl = '';
+  }
+
+  previewImage.src = DEFAULT_PREVIEW_SRC;
+
+  effectsPreviews.forEach((preview) => {
+    preview.style.backgroundImage = '';
+  });
+};
 
 function onDocumentKeydown(evt) {
   if (isEscapeKey(evt) && !isTextFieldFocused()) {
@@ -23,6 +57,7 @@ function onDocumentKeydown(evt) {
 }
 
 function openUploadForm() {
+  updatePreview();
   overlay.classList.remove('hidden');
   document.body.classList.add('modal-open');
   document.addEventListener('keydown', onDocumentKeydown);
@@ -33,6 +68,7 @@ function closeUploadForm() {
   pristine.reset();
   resetScale();
   resetEffect();
+  resetPreview();
   overlay.classList.add('hidden');
   document.body.classList.remove('modal-open');
   document.removeEventListener('keydown', onDocumentKeydown);
