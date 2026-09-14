@@ -21,6 +21,8 @@ const renderThumbnail = (photo) => {
 };
 
 export const renderThumbnails = (photos) => {
+  picturesContainer.querySelectorAll('.picture').forEach((picture) => picture.remove());
+
   const fragment = document.createDocumentFragment();
 
   photos.forEach((photo) => {
