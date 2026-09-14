@@ -1,7 +1,8 @@
-import { generatePhotos } from './data.js';
+import { getData } from './api.js';
 import { renderThumbnails } from './render-thumbnails.js';
+import { showDataErrorMessage } from './messages.js';
 import './form.js';
 
-const photos = generatePhotos();
-
-renderThumbnails(photos);
+getData()
+  .then(renderThumbnails)
+  .catch(showDataErrorMessage);
