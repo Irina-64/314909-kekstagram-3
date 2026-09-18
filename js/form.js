@@ -56,12 +56,12 @@ function onDocumentKeydown(evt) {
   }
 }
 
-function openUploadForm() {
+const openUploadForm = () => {
   updatePreview();
   overlay.classList.remove('hidden');
   document.body.classList.add('modal-open');
   document.addEventListener('keydown', onDocumentKeydown);
-}
+};
 
 function closeUploadForm() {
   form.reset();
