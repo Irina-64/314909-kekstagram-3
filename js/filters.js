@@ -68,5 +68,5 @@ filtersForm.addEventListener('click', onFilterButtonClick);
 export const initFilters = (photos) => {
   sourcePhotos = photos;
   filtersContainer.classList.remove('img-filters--inactive');
-  renderFilteredPhotos();
+  renderThumbnails(sourcePhotos);
 };
