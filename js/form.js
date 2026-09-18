@@ -50,7 +50,7 @@ const resetPreview = () => {
 };
 
 function onDocumentKeydown(evt) {
-  if (isEscapeKey(evt) && !isTextFieldFocused()) {
+  if (isEscapeKey(evt) && !isTextFieldFocused() && !document.querySelector('.error')) {
     evt.preventDefault();
     closeUploadForm();
   }
